@@ -3,7 +3,7 @@ const expressHandlebars = require('express-handlebars') // View (frontend)
 // 사용자 정의 라이브러리
 const fortune = require('./lib/fortune.js')
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000 // port 지정
 
 // 뷰 핸들바 엔진 설정
 app.engine('handlebars', expressHandlebars({
