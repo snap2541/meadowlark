@@ -18,12 +18,14 @@ app.engine('hbs', expressHandlebars({
             return null
         }
     }
-
 }))
+
 // app.set('view engine', 'handlebars')
 app.set('view engine', 'hbs')
 
 app.use(express.static(__dirname + '/public'))
+
+app.get('/section-test', handlers.sectionTest)
 
 app.get('/', handlers.home)
 
