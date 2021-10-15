@@ -1,3 +1,4 @@
+const { thisTypeAnnotation } = require('@babel/types')
 const express = require('express')
 const expressHandlebars = require('express-handlebars') // View (frontend)
 // 사용자 정의 라이브러리
@@ -7,10 +8,20 @@ const app = express()
 const port = process.env.PORT || 3000 // port 지정
 
 // 뷰 핸들바 엔진 설정
-app.engine('handlebars', expressHandlebars({
+app.engine('hbs', expressHandlebars({
+    extname: '.hbs',
     defaultLayout: 'main',
+    helpers:{
+        section: function(name, options){
+            if(!this._sections) this._sections = {}
+            this._sections[name] = options.fn(this)
+            return null
+        }
+    }
+
 }))
-app.set('view engine', 'handlebars')
+// app.set('view engine', 'handlebars')
+app.set('view engine', 'hbs')
 
 app.use(express.static(__dirname + '/public'))
 
